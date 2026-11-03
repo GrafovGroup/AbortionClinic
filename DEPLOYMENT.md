@@ -1,9 +1,13 @@
 # Production release for AbortionClinic.ca
 
-The user authorized publication on November 3, 2026. The existing host is OpenAI
-Sites. This session can publish source to GitHub but has no connected Sites
-publishing tool or hosting credentials. A prepared build or GitHub push is not
-proof of a website deployment.
+The user authorized publication on November 3, 2026 and subsequently selected WHC
+Web Hosting with cPanel as the destination. The provided server IPv4 address is
+`148.113.170.101`. Confirm the account's secure hostname, domain document root and
+access before uploading or changing DNS. The existing live site remains on OpenAI
+Sites until the WHC copy is verified and traffic is switched.
+
+See [WHC_DEPLOYMENT.md](WHC_DEPLOYMENT.md) for migration, backup and rollback steps.
+A prepared archive or GitHub push does not deploy to WHC.
 
 ## Build the public version
 
@@ -30,29 +34,27 @@ After committing reviewed source, `npm run release` creates
 contains the built site at its root, including `_headers` and `_redirects`.
 Packaging requires the system `zip` command. It performs no network publication.
 
-## Update the existing OpenAI Sites project
+## Publish to the selected WHC account
 
-Use the existing project connected to AbortionClinic.ca. Its source-update/import
-controls must be checked in that project; this repository does not assume Sites
-supports GitHub synchronization or ZIP upload. If it accepts a build pipeline,
-use `npm ci && npm run build:production` and the `dist-production` output directory.
-If it accepts static output, use the prepared archive only through that supported
-mechanism. Do not assume pushing this repository updates the live site.
+Run `npm run release:whc` from a clean committed checkout. The ZIP contains the
+production output at its root, including a generated `.htaccess` for Apache 2.4+
+or compatible LiteSpeed hosting. The archive and its commit/checksum manifest are
+stored in `releases/` and are not committed as source.
 
-Configure the equivalents of `_headers` and `_redirects` if the host does not
-consume those files directly. Required behavior:
+The `.htaccess` handles the 52 legacy redirects, proper static 404 responses,
+security headers, selective noindex, JavaScript/image MIME types and protection
+for hidden/source/backup files. Host-scoped HTTPS and www redirects must be tested
+with a valid WHC certificate and the account's actual proxy arrangement.
 
-- Existing sitemap URLs respond with 200, not a single-page-app fallback.
-- The retired connection-request URLs and older development paths return the
-  generated 301 redirects.
-- Unknown URLs return an actual 404 with the localized error page where supported.
-- Public content has no preview `noindex` header; robots.txt allows crawling and
-  points to the public sitemap. Original nonindexed routes stay nonindexed.
-- Serve image/script MIME types and preserve Referrer-Policy, CSP and nosniff.
+Verify cPanel's domain-to-document-root mapping, preserve existing site files,
+upload and validate the new release, then update only the required website DNS
+records. Preserve unrelated websites and mail records. The exact access and DNS
+targets must come from the user's WHC account; no credentials belong in the repo.
 
-Do not change the domain's DNS merely to publish an updated version within its
-current Sites project. Keep the previous published version available for rollback
-using the host's supported version history.
+`npm run test:apache` exercises the generated rules against a real local Apache
+server. It requires Apache 2.4 and the indicated modules; see the test's setup
+message for binary/module overrides. These checks do not establish readiness of
+the user's remote server or its certificate.
 
 ## Verify after publication
 

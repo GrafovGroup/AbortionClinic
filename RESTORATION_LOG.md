@@ -146,3 +146,27 @@ show the administrative-only restrictions, and pass sampled axe checks.
 Release packaging is reproducible through `npm run release`; its manifest records
 the actual source commit and archive checksum. Deployment remains unperformed
 until the existing Sites project is updated through its publishing controls.
+
+
+## WHC migration preparation — November 3, 2026
+
+The user changed the destination to WHC Web Hosting with cPanel and supplied
+server IPv4 `148.113.170.101`. No cPanel/SFTP/SSH credentials or hosting identity
+are configured in this cloud environment. The server hostname, account username
+and exact domain document root have been requested; no values are inferred from
+the IP. A reverse-DNS lookup returned no hostname.
+
+Preparing an Apache-compatible production `.htaccess`, a WHC release archive and
+migration/rollback documentation. No WHC upload or DNS change has occurred. The
+existing live domain remains on its previous host until the new origin is verified.
+
+
+WHC preparation validation: 10 Node/HTTP/artifact tests and 5 actual Apache 2.4.69
+integration checks passed. Apache packages were downloaded through authenticated
+package metadata/checksum verification and extracted locally under /tmp for tests.
+The integration checks covered 108 retained routes, 52 legacy redirect mappings,
+selective indexing/security headers, MIME types, native 404s, protected files,
+certificate-challenge access and host-scoped HTTPS canonicalization. These results
+do not claim a connection to the user's WHC account or a valid remote certificate.
+The user requested help locating the remaining cPanel details; instructions were
+provided. Credentials and the exact destination have not been supplied.

@@ -5,6 +5,7 @@ import { ui, regionNames } from './ui.mjs';
 import { pathFor, topicPath, regionPath, providerPath, oldPathFor } from '../public/routes.mjs';
 import { validateProviders } from '../public/directory.mjs';
 import { recoveredContent, cleanMetadata } from './recovery.mjs';
+import { apacheConfig } from './apache-config.mjs';
 
 const production=process.argv.includes('--production');
 const out=new URL(production?'../dist-production/':'../dist/',import.meta.url);
@@ -101,5 +102,6 @@ const headers=['/*','  Referrer-Policy: no-referrer','  X-Content-Type-Options: 
 if(!production)headers.push('  X-Robots-Tag: noindex, nofollow');
 else for(const [path,index] of Object.entries(indexing))if(!index)headers.push(path,'  X-Robots-Tag: noindex, follow');
 await writeFile(new URL('_headers',out),headers.join('\n')+'\n');
+if(production)await writeFile(new URL('.htaccess',out),apacheConfig({redirects,indexing}));
 await writeFile(new URL('sitemap.xml',out),`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">${[...sitemapPaths].map(p=>`<url><loc>https://abortionclinic.ca${p}</loc></url>`).join('')}</urlset>`);
 console.log(`Built ${allPaths.size} pages; preserved all ${inventory.filter(x=>x.inSitemap).length} published sitemap URLs. ${Object.keys(redirects).length} compatibility redirects. ${production?'Production indexing enabled for sitemap pages.':'Preview indexing disabled.'}`);

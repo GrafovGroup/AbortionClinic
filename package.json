@@ -14,7 +14,9 @@
     "build:production": "node scripts/build.mjs --production",
     "start:production": "node scripts/serve.mjs --production",
     "test:production": "node --test scripts/production.test.mjs",
-    "release": "node scripts/package-release.mjs"
+    "release": "node scripts/package-release.mjs",
+    "test:apache": "node --test scripts/apache-check.mjs",
+    "release:whc": "node scripts/package-release.mjs --whc"
   },
   "devDependencies": {
     "axe-core": "4.14.0",
