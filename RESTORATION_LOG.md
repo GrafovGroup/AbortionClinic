@@ -1,94 +1,123 @@
-# AbortionClinic.ca build log
+# AbortionClinic.ca recovery and build log
 
-## Scope decision
+## Current scope
 
-The user changed the request from reproducing the published website to building
-AbortionClinic.ca **from the ground up**. The active implementation is an original
-design with a bilingual informational-directory model. Access to the existing
-website is no longer required to build the interface. No visual fidelity or
-original-source recovery is claimed.
+The active build preserves the existing site's blue visual identity and exact
+public URLs, using the live site as evidence now that network access works. The
+independent-information and public-directory requirements remain in force. No
+patient intake, referral service or appointment coordination is being restored.
 
-The original `CODEX_RESTORATION_MASTER_PROMPT.md` is retained unchanged as historical
-context and the source of the informational-directory requirements. Its direction
-to reproduce the old design has been superseded by the user's new-build request.
+The original specification remains unchanged. The earlier green/cream original
+build was an interim implementation produced while production access was blocked;
+it is no longer the visual target.
 
-## Initial recovery audit — 2026-11-03
+## Initial audit and interim implementation
 
-- The checkout originally contained only the master specification, at commit
-  `0dcbb8bab04267680a9dead4e2f733d9c90333b1`, with a clean working tree.
-- No application source, assets, manifests, tests, deployment settings or session
-  history were available in the checkout.
-- GitHub read access was verified. Requests for the published website returned a
-  proxy CONNECT 403; no HTML, assets, backend data or URL inventory was recovered.
-- The website domains were added to the cloud environment configuration draft.
-  That save did not establish active runtime access or environment publication.
-- A provisional 20-page bilingual foundation was committed as `75b2a85`. Its three
-  Node tests and local HTTP startup passed. Those checks describe that earlier
-  commit, not the expanded site below.
+- The checkout originally contained only `CODEX_RESTORATION_MASTER_PROMPT.md` at
+  commit `0dcbb8bab04267680a9dead4e2f733d9c90333b1`, with no application source,
+  assets, manifests, tests, deployment settings or session history.
+- GitHub access worked, but production requests initially returned proxy CONNECT
+  403. Website domains were added to the environment draft; access began working
+  after the user applied the network configuration.
+- A provisional 20-page foundation was committed as `75b2a85`. The subsequent
+  original design generated 60 localized pages. Its earlier passing tests apply
+  to that implementation and do not establish the restored build's result below.
 
-## Original build
+## Live capture — 2026-11-03
 
-- A responsive green/cream design with an original hand-built SVG landscape,
-  locally served assets, mobile navigation, contextual EN/FR switching and FAQs.
-- 58 content pages plus English/French 404 pages: home, directory, information,
-  six topic guides per language, resources for all 13 provinces and territories,
-  and administrative/policy pages. French routes use localized names.
-- One validated bilingual provider data structure, geographic search and province
-  filtering in browser memory, reset controls, explicit empty states and provider
-  detail generation for future sourced records.
-- Nonclinical conversation guides with useful provider questions. No dosing,
-  treatment instructions, fabricated provider details or unsupported medical
-  review claims were introduced.
-- Public-facing contact guidance, privacy and editorial pages; a functional
-  contact channel remains to be configured.
-- Canonical and alternate-language tags, a sitemap and WebSite structured data.
-  The site is not represented as a MedicalClinic. Preview indexing stays disabled.
-- No patient intake, appointments, referrals, third-party analytics or external
-  visual assets. Quick Exit explains its browser-history limitation.
+- Fetched robots.txt, sitemap.xml and 110 public HTML pages with bounded concurrency.
+  All page requests returned HTTP 200. The sitemap contains 102 URLs; eight more
+  pages were discovered through public links. No API/admin endpoint was requested,
+  and no form was submitted.
+- The original eight nonsitemap pages have `noindex, follow`: EN/FR directory,
+  locations, for-providers and connection-request pages.
+- Recorded canonical URLs, EN/FR/x-default alternates, page titles/descriptions,
+  social metadata and public Google/Bing site-verification values.
+- Preserved raw responses in `/workspace/scratch/live-site/`. Durable repository
+  records are `data/live-inventory.json`, `data/live-pages.json`,
+  `data/recovered-providers.json` and `data/live-assets.json`.
+- Asset capture includes the published stylesheet and 42 logo, icon and image
+  files. The asset manifest records source URLs, sizes and SHA-256 hashes; stored
+  files matched the captured hashes when the manifest was copied.
+- Scripts were removed from repository main-content snapshots. The two legacy
+  patient connection routes retain metadata only there. Snapshots are reference
+  material and can contain superseded service language; rendered content must be
+  sanitized and edited before use.
 
-## Validation for the expanded build
+## Restored implementation
 
-The application remains free of runtime package dependencies. Development checks
-use pinned `playwright-core` and `axe-core` packages with system Chromium.
+- Restored the published blue theme, original logo and photography, with responsive
+  adjustments for the rebuilt static interface.
+- Generates 118 pages and 52 compatibility 301 redirects. All 102 production
+  sitemap URLs are preserved. Of 110 observed live routes, 108 retain their page
+  addresses; the two legacy connection-request routes redirect to the directory.
+- English uses root paths and French uses the original translated `/fr/` paths.
+  Earlier development routes redirect to the restored canonical addresses.
+- Rebuilt bilingual directory and regional searches use browser memory, with
+  direct provider website/telephone links and contextual language switching.
+- Recovered 25 bilingual provider records. Every upstream review date is
+  **2026-09-10**; recovery on **2026-11-03** is recorded separately. No independent
+  provider-source review or provider confirmation is claimed. Six records have
+  explicit street addresses; others keep null addresses and show their city/region.
+- Restored educational content retains original citations and dates with a recovery
+  review notice. Additional guides provide questions to discuss with providers.
+- Rebuilt navigation uses Clinics / Cliniques. Original connection forms and
+  integrations are excluded. Contact/correction guidance has no configured channel.
+- Preserved or rebuilt canonical, hreflang, social and public verification metadata,
+  sitemap coverage and appropriate WebSite structured data. The directory is not
+  represented as a MedicalClinic. Preview indexing remains disabled.
 
-- `npm ci --no-audit --no-fund`: passed from the exact lockfile (2 development packages).
-- `npm run build`: passed; 60 localized pages generated and provider data validated.
-- `npm test`: all 6 tests passed, none failed or skipped. Covers every generated page, links, metadata, sitemap, geographic matching, invalid provider data and HTTP behavior.
-- `npm run test:browser`: all 38 checks passed in Chromium at 1440px and 360px.
-  Covers EN/FR language switches, menus, FAQs, empty search, synthetic-record matching,
-  reset, load failure/retry, Quick Exit, URL/storage/network privacy and overflow.
-  Axe reported zero WCAG 2 A/AA and 2.1 AA violations on sampled home, directory,
-  resources, topic and privacy pages.
-- Browser checks caught and verified fixes for card-label contrast and filter reset.
-  Review also fixed root-path serving, provider URL escaping and type validation.
-- `npm start` was restarted; the French directory and browser module returned HTTP 200.
-- Clean desktop/mobile review screenshots are saved under `/workspace/scratch/`.
+## Validation status for this restored build
 
-The dataset is empty. Validation can test filtering with synthetic test fixtures,
-but it does not verify any real providers. Automated accessibility checks also do
-not substitute for a complete manual accessibility review.
+Final validation passed against the restored build and original asset paths.
 
-## Remaining publication work
+- Live-capture checks passed for route uniqueness, HTTP statuses, canonical/language
+  metadata, provider count/contact extraction, script removal and intake exclusions.
+- The original stylesheet and asset hashes matched their captured manifest values.
+- `npm run build` produces the expected route and redirect counts and rejects
+  missing original sitemap URLs.
+- `npm test`: 6 tests passed, none failed or skipped. All 102 sitemap URLs retain
+  canonical/language pairs; 108 original pages return 200 and 2 retired connection
+  routes redirect to the directory. All 52 compatibility redirects were checked.
+- `npm run test:browser`: 46 checks passed on EN/FR desktop and mobile. Includes
+  private homepage search, directory search/filter/reset, real provider detail
+  navigation, failure/retry, Quick Exit, image loading, overflow and sampled axe
+  WCAG A/AA checks with no reported violations. No fresh provider or clinical
+  verification is implied by functional checks.
+- Published `/images/`, `/brand/` and favicon URLs remain available. Clean review
+  screenshots: `/workspace/scratch/abortionclinic-restored-desktop.png` and
+  `/workspace/scratch/abortionclinic-restored-mobile.png`.
+- Rendered-content review caught and verified fixes for residual clinic-connection
+  wording, the absent virtual-care filter, malformed French metadata, old empty
+  directory statements and contact metadata. Original source snapshots are retained
+  unchanged for audit; rebuilt pages apply the informational-only positioning.
 
-1. Add real provider records and provincial/territorial resource links only after
-   checking official sources, and record actual review dates.
-2. Obtain qualified clinical review and authoritative citations before adding
-   clinical explanations. Current guides remain nonclinical questions for providers.
-3. Complete Canadian French, legal/privacy and final editorial review. Document
-   production hosting, logging and retention practices.
-4. Configure a general administrative/correction channel without soliciting patient
-   health information. No contact address has been invented.
-5. Choose the deployment host, replicate response headers, verify redirects and
-   error statuses, and review canonical/indexing settings for launch.
-6. Obtain explicit production approval. The existing live site, domain and
-   production data have not been changed; no deployment or push has been made.
+Automated accessibility checks do not replace a complete manual review. Functional
+checks and recovered citations do not establish current clinical correctness or
+provider contact accuracy.
 
-## Cloud environment configuration
+## Remaining launch work
 
-Earlier onboarding saved installation/startup instructions and the custom network
-domains `abortionclinic.ca` and `www.abortionclinic.ca` in a draft. The expanded
-build now uses `npm ci` and system Chromium for browser testing. Updated complete
-`install_script` and `start_skill` fields were saved successfully in the draft,
-including the tested clean-install, build, Node tests, browser tests and startup.
-Saving does not publish or apply the draft. Environment publication and restoration
-into a fresh task have not been verified.
+1. Recheck each provider's official source and contact details; record genuine new
+   review dates separately from the captured upstream dates.
+2. Obtain qualified medical review of recovered clinical content and its citations,
+   plus Canadian French, legal/privacy and final editorial review.
+3. Configure an administrative correction channel without collecting patient health
+   information. Document production hosting, logging and retention practices.
+4. Choose the static host, apply the generated 301 rules and response headers, and
+   verify canonical URLs, missing-page statuses and indexing controls for launch.
+5. Obtain explicit production approval. The live site, domain and production data
+   have not been changed; no production deployment has been made. Source commits
+   are published separately to the GitHub repository.
+
+## Cloud environment
+
+Earlier onboarding saved install/start instructions and the required website
+domains. This build additionally uses `parse5` from the exact npm lockfile. Browser
+checks use system Chromium, `playwright-core` and `axe-core`. Reusable setup must
+run `npm ci`, build and the required checks; live processes must restart in a new
+task. Draft saves, active runtime changes, publication and fresh-task restoration
+are distinct outcomes and must be reported separately when verified.
+
+Updated canonical-route startup instructions were saved in the cloud environment
+draft. Saving those notes does not publish a new environment snapshot.

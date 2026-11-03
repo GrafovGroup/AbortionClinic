@@ -3,6 +3,7 @@ import { createRequire } from 'node:module';
 import { readFile, mkdir } from 'node:fs/promises';
 import assert from 'node:assert/strict';
 import { makeServer } from './serve.mjs';
+import { pathFor, topicPath } from '../public/routes.mjs';
 
 const require = createRequire(import.meta.url);
 const axeSource = await readFile(require.resolve('axe-core/axe.min.js'), 'utf8');
@@ -34,7 +35,7 @@ try {
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth), true);
     pass(`${device}: root homepage`);
     for (const lang of ['en', 'fr']) {
-      await page.goto(`${base}/${lang}/`);
+      await page.goto(base + pathFor(lang, 'home'));
       await page.waitForLoadState('networkidle');
       assert.equal(await page.locator('html').getAttribute('lang'), `${lang}-CA`);
       assert.equal(await page.locator('h1').count(), 1);
@@ -48,30 +49,32 @@ try {
 
       // The contextual language switch must stay on the same logical page.
       const switcher = page.locator('a[hreflang]').first();
-      if (device === 'mobile') await page.locator('#menu-toggle').click();
+      if (device === 'mobile' && await page.locator('#menu-toggle').isVisible()) await page.locator('#menu-toggle').click();
       await switcher.click();
-      await page.waitForURL(`${base}/${lang === 'en' ? 'fr' : 'en'}/`);
-      await page.goto(`${base}/${lang}/`);
+      await page.waitForURL(base + pathFor(lang === 'en' ? 'fr' : 'en', 'home'));
+      await page.goto(base + pathFor(lang, 'home'));
       pass(`${device}/${lang}: language switch`);
 
       if (device === 'mobile') {
-        const toggle = page.locator('#menu-toggle');
-        assert.equal(await toggle.getAttribute('aria-expanded'), 'false');
-        await toggle.click();
-        assert.equal(await toggle.getAttribute('aria-expanded'), 'true');
         assert.equal(await page.locator('#main-nav').isVisible(), true);
-        await toggle.click();
-        assert.equal(await toggle.getAttribute('aria-expanded'), 'false');
-        pass(`${device}/${lang}: mobile navigation toggle`);
+        const navLinks = await page.locator('#main-nav a').all();
+        for (const item of navLinks) assert.equal(await item.isVisible(), true);
+        pass(`${device}/${lang}: visible wrapped mobile navigation`);
       }
 
+      if (await page.locator('details').count() === 0) await page.goto(base + pathFor(lang, 'faq'));
       const faq = page.locator('details').first();
-      assert.equal(await faq.count(), 1, 'Homepage must include working FAQs');
-      await faq.locator('summary').click();
-      assert.equal(await faq.evaluate(el => el.open), true);
-      await faq.locator('summary').click();
-      assert.equal(await faq.evaluate(el => el.open), false);
-      pass(`${device}/${lang}: FAQ expansion`);
+      if (await faq.count()) {
+        await faq.locator('summary').click();
+        assert.equal(await faq.evaluate(el => el.open), true);
+        await faq.locator('summary').click();
+        assert.equal(await faq.evaluate(el => el.open), false);
+      } else {
+        assert.ok(await page.locator('main h2').count() >= 2, 'FAQ page needs accessible questions');
+        assert.ok((await page.locator('main').innerText()).length > 200, 'FAQ answers must be present');
+      }
+      pass(`${device}/${lang}: FAQ questions and answers`);
+      await page.goto(base + pathFor(lang, 'home'));
 
       await page.evaluate(axeSource);
       const audit = await page.evaluate(async () => {
@@ -79,11 +82,41 @@ try {
         return result.violations.map(v => ({ id: v.id, impact: v.impact, nodes: v.nodes.map(n => ({ target: n.target, failureSummary: n.failureSummary })) }));
       });
       assert.deepEqual(audit, [], `${device}/${lang}: accessibility violations ${JSON.stringify(audit)}`);
-      await page.evaluate(() => { document.activeElement?.blur(); window.scrollTo(0, 0); });
+      for (let y = 0; y < await page.evaluate(() => document.body.scrollHeight); y += 600) {
+        await page.evaluate(y => window.scrollTo({top: y, behavior: 'instant'}), y);
+        await page.waitForTimeout(80);
+      }
+      await page.waitForLoadState('networkidle');
+      const brokenImages = await page.locator('img').evaluateAll(images => images.filter(img => !img.complete || img.naturalWidth === 0).map(img => img.getAttribute('src')));
+      assert.deepEqual(brokenImages, [], `${device}/${lang}: homepage images failed to load`);
+      await page.evaluate(() => { document.activeElement?.blur(); window.scrollTo({top: 0, behavior: 'instant'}); });
       await page.screenshot({ path: `${artifacts}/${device}-${lang}-home.png`, fullPage: true });
       pass(`${device}/${lang}: automated WCAG checks`);
 
-      const directoryPath = `/${lang}/${lang === 'en' ? 'clinics' : 'cliniques'}/`;
+      const homeRequests = [];
+      const recordHomeRequest = request => homeRequests.push(request.url());
+      page.on('request', recordHomeRequest);
+      await page.locator('#home-search #location').fill('Toronto');
+      await page.locator('#home-search').evaluate(form => form.requestSubmit());
+      await page.locator('#home-results-section .provider-card').first().waitFor();
+      assert.equal(await page.locator('#home-results-section').isVisible(), true);
+      for (const location of await page.locator('#home-results-section .provider-card .eyebrow').allTextContents()) assert.match(location, /Toronto/);
+      assert.equal(page.url(), base + pathFor(lang, 'home'));
+      assert.ok(homeRequests.every(url => url === base + '/providers.json'), 'Home search must only load the unfiltered public dataset');
+      assert.equal(await page.evaluate(() => localStorage.length + sessionStorage.length), 0);
+      page.off('request', recordHomeRequest);
+      pass(`${device}/${lang}: homepage search returns actual geographic matches privately`);
+
+      const detailsLink = page.locator('#home-results-section .provider-card a[href^="/"]').first();
+      const detailPath = await detailsLink.getAttribute('href');
+      await detailsLink.click();
+      await page.waitForURL(base + detailPath);
+      assert.ok((await page.locator('main h1').innerText()).length > 3);
+      assert.equal(new URL(page.url()).search, '');
+      assert.ok(await page.locator('main a[href^="https://"]').count() > 0);
+      pass(`${device}/${lang}: recovered provider details open with public source links`);
+
+      const directoryPath = pathFor(lang, 'clinics');
       await page.goto(base + directoryPath);
       await page.waitForLoadState('networkidle');
       const requests = [];
@@ -108,7 +141,7 @@ try {
       await page.evaluate(axeSource);
       const directoryAudit = await page.evaluate(async () => (await window.axe.run(document, { runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21aa'] } })).violations.map(v => ({ id: v.id, nodes: v.nodes.map(n => n.target) })));
       assert.deepEqual(directoryAudit, [], `${device}/${lang}: directory accessibility violations ${JSON.stringify(directoryAudit)}`);
-      await page.evaluate(() => { document.activeElement?.blur(); window.scrollTo(0, 0); });
+      await page.evaluate(() => { document.activeElement?.blur(); window.scrollTo({top: 0, behavior: 'instant'}); });
       await page.screenshot({ path: `${artifacts}/${device}-${lang}-directory.png`, fullPage: true });
       pass(`${device}/${lang}: directory automated WCAG checks`);
 
@@ -122,6 +155,7 @@ try {
         const serveFixtures = route => route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(fixtures) });
         await page.route('**/providers.json', serveFixtures);
         await page.reload();
+        await page.waitForLoadState('networkidle');
         await page.locator('.provider-card').first().waitFor();
         assert.equal(await page.locator('.provider-card').count(), 2);
         await page.locator('#location').fill('montreal quebec');
@@ -154,7 +188,7 @@ try {
         pass('desktop/en: directory load failure and successful retry');
       }
 
-      const extraPages = [`/${lang}/${lang === 'en' ? 'resources' : 'ressources'}/`, `/${lang}/information/medication/`, `/${lang}/${lang === 'en' ? 'privacy' : 'confidentialite'}/`];
+      const extraPages = [pathFor(lang, 'resources'), topicPath(lang, 'medication'), pathFor(lang, 'privacy')];
       for (const path of extraPages) {
         const response = await page.goto(base + path);
         assert.equal(response.status(), 200, `Missing page ${path}`);

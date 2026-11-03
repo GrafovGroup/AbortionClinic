@@ -42,7 +42,7 @@ export const editorial = {
     editorial: {
       intro: 'Our standard is to make the source and limits of information visible.',
       sections: [
-        { title: 'Public provider information', body: 'A provider record must have an official public source and the date its details were reviewed before it is published. Missing details are left out rather than inferred. The directory currently has no published provider records.' },
+        { title: 'Public provider information', body: 'A provider record must have an official public source and the date its details were reviewed before it is published. Missing details are left out rather than inferred. The directory contains records recovered from the previously published website. Original review dates are retained; official details have not been freshly verified.' },
         { title: 'Reviewed is not provider-confirmed', body: '“Information reviewed” means a reviewer checked the stated public source. “Provider-confirmed” may be used only when there is evidence of confirmation from that provider. Neither label means an appointment is available or that a visitor is eligible for a particular service.' },
         { title: 'Clinical content', body: 'Clinical explanations require authoritative sources and review by a qualified healthcare professional before publication. The current topic guides offer questions to discuss with a provider; they do not contain treatment instructions. No clinical review is claimed for this version.' },
         { title: 'Language and accessibility', body: 'English and French content should carry the same meaning. Canadian French review, accessibility checks and a clear correction process are part of the publication requirements.' },
@@ -52,7 +52,7 @@ export const editorial = {
     faqs: [
       { q: 'Is AbortionClinic.ca a medical clinic?', a: 'No. It is an independent information website and public provider directory. It does not provide medical care, referrals, appointment booking or patient coordination.' },
       { q: 'Can I book an appointment here?', a: 'Appointments are arranged directly with a provider. The site does not accept booking requests or contact providers on your behalf.' },
-      { q: 'What does an empty search result mean?', a: 'It means the directory has no published record matching your search. It does not establish that care is unavailable in that location. This version has no published provider records yet.' },
+      { q: 'What does an empty search result mean?', a: 'It means the directory has no published record matching your search. It does not establish that care is unavailable in that location. Some locations may have no published provider listings.' },
       { q: 'What information can I use to search?', a: 'Use a city, province or territory. Do not enter your name, medical history, pregnancy details or other personal health information.' },
       { q: 'Does Quick Exit erase my history?', a: 'No. It replaces this page with a neutral website, but cannot remove browser history or records held by your device or network.' },
       { q: 'Does a listing mean a provider is affiliated with the site?', a: 'No. Listing publicly available information does not establish an affiliation, recommendation or referral relationship.' },
@@ -156,7 +156,7 @@ export const editorial = {
     editorial: {
       intro: 'Notre norme : rendre visibles la source et les limites de l’information.',
       sections: [
-        { title: 'Renseignements publics sur les fournisseurs', body: 'Avant publication, une fiche doit indiquer une source publique officielle et la date de révision de ses renseignements. Les détails manquants sont omis plutôt que déduits. Le répertoire ne contient actuellement aucune fiche publiée.' },
+        { title: 'Renseignements publics sur les fournisseurs', body: 'Avant publication, une fiche doit indiquer une source publique officielle et la date de révision de ses renseignements. Les détails manquants sont omis plutôt que déduits. Le répertoire contient des fiches récupérées du site publié. Les dates originales sont conservées; les renseignements officiels n’ont pas été revérifiés.' },
         { title: 'Révision et confirmation sont distinctes', body: '« Renseignements révisés » signifie qu’une personne a vérifié la source publique indiquée. La mention « Confirmé par le fournisseur » exige une preuve de confirmation de sa part. Aucune de ces mentions ne signifie qu’un rendez-vous est disponible ou qu’un visiteur est admissible à un service particulier.' },
         { title: 'Contenu clinique', body: 'Les explications cliniques exigent des sources faisant autorité et une révision par un professionnel de la santé qualifié avant publication. Les guides actuels proposent des questions à discuter avec un fournisseur; ils ne contiennent pas de directives de traitement. Aucune révision clinique n’est revendiquée pour cette version.' },
         { title: 'Langue et accessibilité', body: 'Le contenu français et le contenu anglais doivent transmettre le même sens. Une révision en français canadien, des vérifications d’accessibilité et un processus de correction clair font partie des exigences de publication.' },
@@ -166,7 +166,7 @@ export const editorial = {
     faqs: [
       { q: 'AbortionClinic.ca est-il une clinique médicale?', a: 'Non. C’est un site d’information indépendant et un répertoire public de fournisseurs. Il n’offre ni soins médicaux, ni services d’orientation, ni prise de rendez-vous, ni coordination des soins.' },
       { q: 'Puis-je prendre rendez-vous ici?', a: 'Les rendez-vous se prennent directement auprès d’un fournisseur. Le site n’accepte pas de demandes de réservation et ne contacte pas de fournisseurs en votre nom.' },
-      { q: 'Que signifie une recherche sans résultat?', a: 'Cela signifie qu’aucune fiche publiée ne correspond à votre recherche. Cela ne démontre pas que des soins sont indisponibles à cet endroit. Cette version ne contient pas encore de fiches de fournisseurs publiées.' },
+      { q: 'Que signifie une recherche sans résultat?', a: 'Cela signifie qu’aucune fiche publiée ne correspond à votre recherche. Cela ne démontre pas que des soins sont indisponibles à cet endroit. Certaines localités peuvent ne pas avoir de fiches publiées.' },
       { q: 'Quels renseignements puis-je utiliser pour chercher?', a: 'Utilisez une ville, une province ou un territoire. Ne saisissez pas votre nom, vos antécédents médicaux, des détails sur une grossesse ou d’autres renseignements personnels de santé.' },
       { q: 'La sortie rapide efface-t-elle mon historique?', a: 'Non. Elle remplace cette page par un site neutre, mais ne peut pas supprimer l’historique du navigateur ni les traces conservées par votre appareil ou votre réseau.' },
       { q: 'Une fiche signifie-t-elle que le fournisseur est affilié au site?', a: 'Non. Présenter des renseignements publics n’établit aucune affiliation, recommandation ou relation d’orientation.' },

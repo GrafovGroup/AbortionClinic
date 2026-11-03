@@ -1,17 +1,20 @@
 # AbortionClinic.ca
 
-An original bilingual information website and public clinic directory for Canada.
-The current scope is a **new build from the ground up**, as requested after the
-initial recovery attempt. It does not reproduce or claim to recover the live
-website. The informational-directory requirements in
-`CODEX_RESTORATION_MASTER_PROMPT.md` still apply; its recovery-first instructions
-describe the earlier phase.
+A bilingual informational website and public clinic directory for Canada. The
+current implementation restores the published site's blue visual identity, logo,
+photography and existing public URLs while applying the independent-directory
+requirements in `CODEX_RESTORATION_MASTER_PROMPT.md`.
+
+The live site became accessible after the environment network settings were
+applied. Its public content and assets were recovered on **November 3, 2026**.
+This is a maintainable replacement built from that evidence; original backend
+source and private data were not recovered. Production has not been changed.
 
 ## Develop locally
 
-Requires Node.js 22 or newer and npm. The application and build have no runtime
-package dependencies. Browser testing uses the exact development dependencies in
-`package-lock.json` and a system Chromium executable.
+Requires Node.js 22 or newer and npm. The build uses `parse5` to sanitize recovered
+markup. Browser checks use pinned `playwright-core` and `axe-core` dependencies
+with system Chromium. The generated static website has no package runtime.
 
 ```sh
 cd /workspace/AbortionClinic
@@ -22,73 +25,86 @@ npm run test:browser
 npm start
 ```
 
-The browser runner uses `/usr/bin/chromium` by default. Set `CHROMIUM_PATH` if your
-installation is elsewhere. Screenshots are written to
-`/tmp/abortionclinic-browser`; `BROWSER_ARTIFACTS` overrides that directory. Install
-Chromium through your operating system's package manager if it is absent.
+The browser runner uses `/usr/bin/chromium` by default; set `CHROMIUM_PATH` for a
+different installation. `BROWSER_ARTIFACTS` overrides its screenshot directory.
+Install Chromium through the operating system's package manager if needed.
 
 The development server binds to loopback on port 3000; `PORT` overrides the port.
-Stop it with Ctrl-C. Rebuild after source changes; the server reads the generated
-files on each request. `dist/` and `node_modules/` are ignored. Use the existing
-checkout: cloud tasks already have isolated environments and do not need a
-separate Git worktree unless explicitly requested.
+Stop it with Ctrl-C. Rebuild after source changes. `dist/` and `node_modules/` are
+ignored. Use the existing checkout: each cloud task already has an isolated
+environment and needs no separate worktree unless explicitly requested.
 
-## Site structure
+## Routes and implementation
 
-The build currently generates 58 content pages and two localized 404 pages:
-English and French homepages, directory pages, topic guides, all 13 province and
-territory pages, and administrative/policy pages. The root serves English, with a
-contextual language switch on localized pages. French routes use translated names
-such as `/fr/cliniques/`.
+The build generates 118 pages and 52 permanent compatibility redirects. It
+preserves every one of the 102 URLs in the captured production sitemap. Of the
+110 observed live pages, 108 keep their URLs; the two legacy connection-request
+routes redirect to the clinic directory and do not retain patient intake.
 
-- `scripts/build.mjs`: static pages, original SVG illustration, metadata and sitemap.
-- `scripts/content.mjs` and `scripts/ui.mjs`: localized copy, interface labels and routes.
-- `scripts/editorial.mjs`: administrative content, FAQs and nonclinical topic guides.
-- `public/style.css`: responsive layout, colour, typography and interaction styles.
-- `public/app.js` and `public/directory.mjs`: navigation, geographic filtering and validation.
-- `public/providers.json`: one shared bilingual provider dataset, currently empty.
-- `scripts/serve.mjs`: local static server and response headers.
-- `scripts/site.test.mjs` and `scripts/browser-check.mjs`: automated validation.
+English uses the existing root paths, such as `/find-care/`, `/ontario/` and
+`/providers/mississauga-womens-clinic/`. French preserves the corresponding
+translated paths, including `/fr/trouver-des-soins/` and `/fr/prestataires/`.
+Earlier development `/en/` and other changed paths redirect to these canonical
+addresses. Language links remain contextual; canonical, hreflang, social metadata
+and existing public Google/Bing verification values are retained or rebuilt.
 
-The site uses local assets and an original SVG landscape. It has no patient intake,
-booking, referral flow or analytics. Directory search terms stay in browser memory.
-Quick Exit replaces the current page and explains that it cannot erase history.
+- `scripts/build.mjs`: static output, shared page shell, metadata, sitemap and redirects.
+- `scripts/recovery.mjs`: recovered-markup sanitization and editorial transforms.
+- `public/routes.mjs`: shared canonical English/French route definitions.
+- `scripts/content.mjs`, `scripts/ui.mjs`, `scripts/editorial.mjs`: localized interface and editorial copy.
+- `public/live-theme.css`, `public/live-assets/`: recovered stylesheet and assets.
+- `public/style.css`: responsive adjustments and styles for the rebuilt interface.
+- `public/app.js`, `public/directory.mjs`: browser interactions, geographic search and validation.
+- `public/providers.json`: 25 bilingual provider records recovered from the published site.
+- `scripts/serve.mjs`: local static server, 301 redirects, error responses and headers.
+- `scripts/site.test.mjs`, `scripts/browser-check.mjs`: automated checks.
 
-## Provider records and content
+## Recovery evidence and content limits
 
-The directory is deliberately empty until real records can be sourced. A missing
-result does not imply that care is unavailable. Each record requires a unique
-slug `id`, `name` and `address` in both `en` and `fr`, `city`, a two-letter Canadian
-province/territory code in `province`, HTTPS `website` and `source` URLs, and an
-actual `reviewed` date in YYYY-MM-DD format. A public `phone` is optional.
+`data/live-inventory.json` records 110 observed routes and their metadata.
+`data/live-pages.json` retains captured main content without scripts; legacy
+connection-request pages retain metadata only. These are archival inputs, not
+content to render without sanitization and review. Original service claims may
+appear in these snapshots; they must not be reintroduced into rendered pages.
+`data/live-assets.json` records origin URLs and SHA-256 hashes for the original
+stylesheet and 42 assets. `data/recovered-providers.json` preserves the provider
+extraction and provenance independently of application formatting.
 
-The build validates records and creates matching detail pages when records exist.
-Schema validation does not establish that information is accurate: check the
-official source and record the real review date. Do not add patient information,
-invented providers or unsubstantiated confirmation badges.
+All 25 provider records retain the published source-review date **2026-09-10**.
+That is an upstream date, not evidence of a new review by this project. Recovery
+on **2026-11-03** is recorded separately. The official provider websites and
+contact details have not been independently rechecked. Six records have explicit
+street addresses; missing addresses remain null, with city/region shown instead.
 
-The six topic guides contain questions to discuss with a provider. They do not
-publish clinical instructions. Provincial/territorial resource pages currently
-identify their source gap rather than inventing local services. The contact page
-explains its administrative purpose but has no configured contact channel.
+Recovered educational pages keep their citations and original dates and show a
+review notice. Additional topic guides contain questions to discuss with a
+provider. Neither recovery nor automated testing constitutes qualified medical,
+legal or Canadian French review.
+
+The directory has no patient intake, booking, referral service or analytics.
+Geographic search remains in browser memory. Quick Exit explains that it cannot
+erase history. The contact page has no configured administrative channel yet.
 
 ## Deployment and launch requirements
 
-`npm run build` creates a static `dist/` directory suitable for a static host.
-No production deployment has been made. A production host must serve directory
-index pages, return an actual 404 status for missing routes, and preserve the
-security/privacy headers from the development server, especially
-`Referrer-Policy: no-referrer` and the Content Security Policy. Configure equivalent
-headers on the chosen host; the Node development server is not a deployment plan.
+`npm run build` writes `dist/` for a static host. The build produces `redirects.json`
+and a Netlify-style `_redirects` file with 301 rules. Apply equivalent permanent
+redirects on the chosen host, including the two retired connection-request routes;
+do not deploy the folder without verifying those rules. Serve directory index
+pages and return an actual 404 status for missing routes.
 
-Preview pages include `noindex,nofollow`, the local server sends `X-Robots-Tag`, and
-robots.txt disallows crawling. These settings do not provide access control.
-Keep them until an explicitly approved public launch; then review the indexing
-settings together with canonical URLs, sitemap and the selected production host.
+Replicate the security/privacy response headers from `scripts/serve.mjs`, especially
+`Referrer-Policy: no-referrer` and Content Security Policy. These settings need host
+configuration; running the development server is not a production deployment plan.
 
-Before launch, complete official provider/resource sourcing, qualified review for
-any future clinical content, Canadian French and legal/privacy review, an
-administrative correction channel, and final accessibility/content checks. Obtain
-explicit approval before deployment or changes to the existing live domain.
+Preview HTML includes `noindex,nofollow`, the local server sends `X-Robots-Tag`, and
+robots.txt disallows crawling. These controls do not provide authentication. Keep
+them during review. At an explicitly approved public launch, review indexing
+controls together with the sitemap, original noindex routes, canonical URLs and
+redirects so preview settings do not accidentally suppress the published site.
 
-See `RESTORATION_LOG.md` for scope history and validation evidence.
+Before launch, recheck official provider sources, review recovered clinical content,
+complete Canadian French and legal/privacy review, configure an administrative
+correction channel, document hosting/logging practices and complete final manual
+accessibility checks. Obtain explicit approval before deployment or changes to the
+existing live domain. See `RESTORATION_LOG.md` for evidence and validation status.

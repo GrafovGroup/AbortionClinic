@@ -11,10 +11,10 @@ export function validateProviders(records) {
   if(typeof p.id!=='string'||!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(p.id)||ids.has(p.id)) throw new Error('Invalid or duplicate provider id');
   ids.add(p.id);
   if(typeof p.province!=='string'||!Object.hasOwn(names,p.province)||typeof p.city!=='string'||!p.city.trim()) throw new Error('Provider requires city and region');
-  for(const key of ['name','address']) for(const lang of ['en','fr']) if(typeof p[key]?.[lang]!=='string'||!p[key][lang].trim()) throw new Error('Missing localized provider field');
+  for(const lang of ['en','fr']) { if(typeof p.name?.[lang]!=='string'||!p.name[lang].trim()) throw new Error('Missing localized provider name'); if(!p.address || !(p.address[lang]===null || typeof p.address[lang]==='string'&&p.address[lang].trim())) throw new Error('Invalid localized provider address'); }
   for(const key of ['website','source']) {if(typeof p[key]!=='string') throw new Error('Provider links must be strings');const url=new URL(p[key]);if(url.protocol!=='https:'||url.username||url.password) throw new Error('Provider links must use HTTPS without credentials');}
   if(!/^\d{4}-\d{2}-\d{2}$/.test(p.reviewed)||!Number.isFinite(Date.parse(p.reviewed))||new Date(p.reviewed).toISOString().slice(0,10)!==p.reviewed||p.reviewed>new Date().toISOString().slice(0,10)) throw new Error('Invalid provider review date');
-  if(p.phone!==undefined && (typeof p.phone!=='string'||!/^\+?[\d ()-]{7,25}$/.test(p.phone))) throw new Error('Invalid public phone');
+  if(p.phone!==undefined && (typeof p.phone!=='string'||!/^\+?[\d ()-]{7,25}(?:;ext=\d{1,8})?$/.test(p.phone))) throw new Error('Invalid public phone');
  }
  return records;
 }
