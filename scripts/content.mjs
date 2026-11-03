@@ -1,3 +1,4 @@
+import { routes } from './ui.mjs';
 export const content = {
   en: {
     lang: 'en-CA', label: 'English', other: 'Français', nav: ['Home', 'Clinics', 'Abortion information', 'Resources'],
@@ -47,5 +48,5 @@ export const content = {
   }
 };
 export const pages = ['home', 'clinics', 'information', 'resources', 'about', 'contact', 'privacy', 'terms', 'editorial', 'disclaimer'];
-export const pathFor = (lang, page) => `/${lang}/${page === 'home' ? '' : page + '/'}`;
+export const pathFor = (lang, page) => `/${lang}/${routes[lang][page] ? routes[lang][page] + '/' : ''}`;
 export const escape = (s) => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
