@@ -1,0 +1,16 @@
+import { execFileSync } from 'node:child_process';
+import { mkdir, rm, readFile, writeFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
+import { fileURLToPath } from 'node:url';
+const root=fileURLToPath(new URL('../',import.meta.url));
+if(execFileSync('git',['status','--porcelain'],{cwd:root,encoding:'utf8'}).trim())throw new Error('Commit the reviewed source before packaging a release.');
+const commit=execFileSync('git',['rev-parse','HEAD'],{cwd:root,encoding:'utf8'}).trim();
+execFileSync(process.execPath,['scripts/build.mjs','--production'],{cwd:root,stdio:'inherit'});
+const output=new URL('../releases/',import.meta.url);
+await mkdir(output,{recursive:true});
+const archive=new URL('abortionclinic-production.zip',output);
+await rm(archive,{force:true});
+execFileSync('zip',['-q','-r','-X',fileURLToPath(archive),'.'],{cwd:fileURLToPath(new URL('../dist-production/',import.meta.url))});
+const checksum=createHash('sha256').update(await readFile(archive)).digest('hex');
+await writeFile(new URL('release-manifest.json',output),JSON.stringify({commit,archive:'abortionclinic-production.zip',sha256:checksum,createdAt:new Date().toISOString(),canonicalOrigin:'https://abortionclinic.ca',deploymentStatus:'prepared; not deployed'},null,2)+'\n');
+console.log(`Release prepared: ${fileURLToPath(archive)}\nSource: ${commit}\nSHA-256: ${checksum}`);

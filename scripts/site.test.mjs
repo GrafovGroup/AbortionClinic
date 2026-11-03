@@ -117,6 +117,7 @@ test('HTTP preserves production pages and legacy redirects; missing routes, trav
     assert.equal(response.status,200,page.path);
     assert.match(response.headers.get('content-type'),/text\/html/);
     assert.equal(response.headers.get('referrer-policy'),'no-referrer');
+    assert.match(response.headers.get('x-robots-tag') || '', /noindex.*nofollow/i, 'Preview responses must remain nonindexable');
     assert.match(await response.text(),/AbortionClinic/);
    }
   }

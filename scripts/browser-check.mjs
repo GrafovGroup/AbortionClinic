@@ -7,9 +7,10 @@ import { pathFor, topicPath } from '../public/routes.mjs';
 
 const require = createRequire(import.meta.url);
 const axeSource = await readFile(require.resolve('axe-core/axe.min.js'), 'utf8');
-const artifacts = process.env.BROWSER_ARTIFACTS || '/tmp/abortionclinic-browser';
+const production = process.env.SITE_MODE === 'production';
+const artifacts = process.env.BROWSER_ARTIFACTS || `/tmp/abortionclinic-browser${production ? '-production' : ''}`;
 await mkdir(artifacts, { recursive: true });
-const server = makeServer();
+const server = makeServer({ production });
 await new Promise((resolve, reject) => {
   server.once('error', reject);
   server.listen(0, '127.0.0.1', resolve);

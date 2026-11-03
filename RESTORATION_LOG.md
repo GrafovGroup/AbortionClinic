@@ -121,3 +121,28 @@ are distinct outcomes and must be reported separately when verified.
 
 Updated canonical-route startup instructions were saved in the cloud environment
 draft. Saving those notes does not publish a new environment snapshot.
+
+
+## Production preparation — November 3, 2026
+
+The user explicitly requested publication and confirmed OpenAI Sites is the host.
+No connected Sites deployment tool, hosting identity or hosting secret is available
+in this chat. A read-only check for GitHub Pages via the GitHub API was blocked by
+network policy; there is no evidence that GitHub Pages is the current host.
+
+Added a separate production build with indexable sitemap pages, original noindex
+exceptions, allow-crawl robots.txt, security headers and permanent redirects.
+Preview indexing remains disabled. Production mode can be served locally and
+packaged with a source-commit/checksum manifest; neither operation publishes it.
+
+Recovered the administrative website-inquiries telephone from the original EN/FR
+contact pages and restored it as a direct tel link. It is clearly separated from
+clinical/appointment/emergency services. No new reachability check is claimed.
+Revised development-only wording while retaining honest provider/clinical provenance.
+
+Validation passed: 10 Node/HTTP/artifact tests, 46 production browser checks,
+and 4 final EN/FR desktop/mobile contact checks. The contact pages have no forms,
+show the administrative-only restrictions, and pass sampled axe checks.
+Release packaging is reproducible through `npm run release`; its manifest records
+the actual source commit and archive checksum. Deployment remains unperformed
+until the existing Sites project is updated through its publishing controls.

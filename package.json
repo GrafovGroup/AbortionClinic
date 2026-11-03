@@ -10,7 +10,11 @@
     "build": "node scripts/build.mjs",
     "start": "node scripts/serve.mjs",
     "test": "node --test",
-    "test:browser": "node scripts/browser-check.mjs"
+    "test:browser": "node scripts/browser-check.mjs",
+    "build:production": "node scripts/build.mjs --production",
+    "start:production": "node scripts/serve.mjs --production",
+    "test:production": "node --test scripts/production.test.mjs",
+    "release": "node scripts/package-release.mjs"
   },
   "devDependencies": {
     "axe-core": "4.14.0",

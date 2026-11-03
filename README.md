@@ -8,7 +8,7 @@ requirements in `CODEX_RESTORATION_MASTER_PROMPT.md`.
 The live site became accessible after the environment network settings were
 applied. Its public content and assets were recovered on **November 3, 2026**.
 This is a maintainable replacement built from that evidence; original backend
-source and private data were not recovered. Production has not been changed.
+source and private data were not recovered. Production publication is authorized. A deployable release is prepared separately; the OpenAI Sites publishing connection is still required.
 
 ## Develop locally
 
@@ -85,26 +85,22 @@ The directory has no patient intake, booking, referral service or analytics.
 Geographic search remains in browser memory. Quick Exit explains that it cannot
 erase history. The contact page has no configured administrative channel yet.
 
-## Deployment and launch requirements
+## Production build and publication
 
-`npm run build` writes `dist/` for a static host. The build produces `redirects.json`
-and a Netlify-style `_redirects` file with 301 rules. Apply equivalent permanent
-redirects on the chosen host, including the two retired connection-request routes;
-do not deploy the folder without verifying those rules. Serve directory index
-pages and return an actual 404 status for missing routes.
+The existing host is **OpenAI Sites**. The user has authorized publication.
+Use `npm run build:production` to create `dist-production/` with public indexing,
+original canonical routes, selective noindex rules, security headers and redirects.
+The default `npm run build` still produces the search-blocked preview in `dist/`.
+Do not publish that preview directory.
 
-Replicate the security/privacy response headers from `scripts/serve.mjs`, especially
-`Referrer-Policy: no-referrer` and Content Security Policy. These settings need host
-configuration; running the development server is not a production deployment plan.
+`npm run start:production` serves the public build locally. After committing the
+reviewed source, `npm run release` creates a ZIP and a commit/checksum manifest in
+`releases/`. No publishing credentials are stored in the repository.
 
-Preview HTML includes `noindex,nofollow`, the local server sends `X-Robots-Tag`, and
-robots.txt disallows crawling. These controls do not provide authentication. Keep
-them during review. At an explicitly approved public launch, review indexing
-controls together with the sitemap, original noindex routes, canonical URLs and
-redirects so preview settings do not accidentally suppress the published site.
+The recovered administrative phone is available on both contact pages and is
+limited to website inquiries. Patient intake and clinical coordination remain
+absent. Provider/clinical provenance is retained without claiming new review.
 
-Before launch, recheck official provider sources, review recovered clinical content,
-complete Canadian French and legal/privacy review, configure an administrative
-correction channel, document hosting/logging practices and complete final manual
-accessibility checks. Obtain explicit approval before deployment or changes to the
-existing live domain. See `RESTORATION_LOG.md` for evidence and validation status.
+See [DEPLOYMENT.md](DEPLOYMENT.md) for the exact build commands, host requirements,
+release package and post-publication checks. OpenAI Sites' source-update controls
+must be used to publish; GitHub uploads alone do not establish a live deployment.
