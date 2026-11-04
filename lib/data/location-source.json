@@ -1,0 +1,17 @@
+{
+  "title": "Statistics Canada — Census Subdivision Boundary File, 2025",
+  "url": "https://www150.statcan.gc.ca/n1/en/catalogue/92-162-X",
+  "api": "https://geo.statcan.gc.ca/geo_wa/rest/services/2025/lcsd000a25s_e/MapServer/0/query",
+  "referenceDate": "2025-01-01",
+  "retrieved": "2026-09-11",
+  "count": 5054,
+  "fields": [
+    "CSDUID",
+    "CSDNAME",
+    "provinceCode",
+    "CSDTYPE",
+    "CDNAME"
+  ],
+  "attribution": "Adapted from Statistics Canada, Census Subdivision Boundary File, 2025. This does not constitute an endorsement by Statistics Canada.",
+  "licence": "https://www.statcan.gc.ca/en/reference/licence"
+}

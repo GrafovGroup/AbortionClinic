@@ -1,0 +1,6 @@
+import {env} from 'cloudflare:workers';
+import {requestTarget} from './provider-request-targets';
+export function requestDb(){if(!env.DB)throw new Error('Database unavailable');return env.DB}
+export async function purgeExpired(){await requestDb().prepare("DELETE FROM provider_requests WHERE created_at < ?").bind(new Date(Date.now()-90*86400000).toISOString()).run()}
+export function validateRequest(data:unknown){const d=data as Record<string,unknown>;if(!d||typeof d!=='object')throw new Error('Invalid input');for(const [key,max] of [['organization',150],['email',254],['evidence',1000]] as const)if(typeof d[key]!=='string'||!(d[key] as string).trim()||(d[key] as string).length>max)throw new Error('Invalid input');if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email as string)||!['claim','correction'].includes(d.kind as string)||d.website)throw new Error('Invalid input');const url=new URL(d.evidence as string);if(!['https:','http:'].includes(url.protocol)||url.username||url.password)throw new Error('Invalid evidence URL');return {target:requestTarget(d.listing),organization:(d.organization as string).trim(),email:(d.email as string).trim().toLowerCase(),evidence:url.href,kind:d.kind as string}}
+export function sameOrigin(request:Request){return request.headers.get('origin')===new URL(request.url).origin}

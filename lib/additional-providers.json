@@ -1,0 +1,543 @@
+[
+  {
+    "id": "mississauga-womens-clinic",
+    "name": "Mississauga Women’s Clinic",
+    "city": "Mississauga",
+    "province": "ON",
+    "phone": "905-629-4516",
+    "url": "https://mwclinic.com/",
+    "services": [
+      "medication",
+      "procedural"
+    ],
+    "description": [
+      "A clinic at 101 Queensway West offering medication and procedural abortion. Contact the clinic for its current appointment process.",
+      "Une clinique située au 101, Queensway Ouest, offrant l’avortement par médicaments et par intervention. Consultez la clinique pour connaître les modalités de rendez-vous."
+    ],
+    "sources": [
+      "https://mwclinic.com/"
+    ],
+    "reviewed": "2026-09-10",
+    "confirmed": false,
+    "virtual": false
+  },
+  {
+    "id": "lhsc",
+    "name": "London Health Sciences Centre",
+    "city": "London",
+    "province": "ON",
+    "phone": "519-685-8204",
+    "url": "https://www.lhsc.on.ca/women-s-health/pregnancy-options-program/abortion-clinic",
+    "services": [],
+    "description": [
+      "The Pregnancy Options Program provides abortion services and options counselling. Contact the program about the methods available for your situation.",
+      "Le programme Pregnancy Options offre des services d’avortement et de consultation sur les options de grossesse. Communiquez avec le programme pour connaître les méthodes offertes selon votre situation."
+    ],
+    "sources": [
+      "https://www.lhsc.on.ca/women-s-health/pregnancy-options-program/abortion-clinic"
+    ],
+    "reviewed": "2026-09-10",
+    "confirmed": false,
+    "virtual": false
+  },
+  {
+    "id": "morgentaler-montreal",
+    "name": "Clinique Morgentaler",
+    "city": "Montréal",
+    "province": "QC",
+    "phone": "514-844-4844",
+    "url": "https://montrealmorgentaler.ca/en/contact/",
+    "services": [
+      "medication",
+      "procedural"
+    ],
+    "description": [
+      "Clinique Morgentaler offers medication and procedural abortion in Montréal. Contact the clinic for appointments.",
+      "La Clinique Morgentaler offre l’avortement par médicaments et par intervention à Montréal. Communiquez avec la clinique pour prendre rendez-vous."
+    ],
+    "sources": [
+      "https://montrealmorgentaler.ca/en/contact/",
+      "https://sante.gouv.qc.ca/repertoire-ressources/ressource/?ch_rayon=0&nofiche=51178&theme=avortement",
+      "https://montrealmorgentaler.ca/en/free-appointment/"
+    ],
+    "reviewed": "2026-11-03",
+    "confirmed": false,
+    "virtual": false
+  },
+  {
+    "id": "marigot",
+    "name": "CLSC du Marigot — Clinique d’IVG",
+    "city": "Laval",
+    "province": "QC",
+    "phone": "450-668-1444;ext=45183",
+    "url": "https://www.lavalensante.com/soins-et-services/liste-des-soins-et-services/sante-sexuelle/avortement/",
+    "services": [],
+    "description": [
+      "The IVG clinic serves Laval and surrounding areas. Call extension 45183 to discuss an appointment and the care available.",
+      "La clinique d’IVG dessert Laval et les régions avoisinantes. Appelez au poste 45183 pour discuter d’un rendez-vous et des soins offerts."
+    ],
+    "sources": [
+      "https://www.lavalensante.com/soins-et-services/liste-des-soins-et-services/sante-sexuelle/avortement/"
+    ],
+    "reviewed": "2026-09-10",
+    "confirmed": false,
+    "virtual": false
+  },
+  {
+    "id": "sherbrooke-planning",
+    "name": "Clinique de planning de Sherbrooke",
+    "city": "Sherbrooke",
+    "province": "QC",
+    "phone": "819-565-0767",
+    "url": "https://www.santeestrie.qc.ca/soins-services/specialises/cliniques-specialisees/cliniques-de-jeunes",
+    "services": [],
+    "description": [
+      "The planning clinic at 1095 rue Belvédère Sud lists pregnancy termination services for all ages. Confirm the service and appointment location directly.",
+      "La clinique de planning du 1095, rue Belvédère Sud, offre l’interruption de grossesse aux personnes de tous âges. Confirmez directement le service et le lieu du rendez-vous."
+    ],
+    "sources": [
+      "https://www.santeestrie.qc.ca/soins-services/specialises/cliniques-specialisees/cliniques-de-jeunes"
+    ],
+    "reviewed": "2026-09-10",
+    "confirmed": false,
+    "virtual": false
+  },
+  {
+    "id": "everywomans",
+    "name": "Everywoman’s Health Centre",
+    "city": "Vancouver",
+    "province": "BC",
+    "phone": "604-322-6692",
+    "url": "https://everywomanshealthcentre.ca/",
+    "services": [
+      "procedural"
+    ],
+    "description": [
+      "A Vancouver abortion and sexual health clinic. The appointment line is distinct from the business inquiries line.",
+      "Une clinique d’avortement et de santé sexuelle à Vancouver. La ligne de rendez-vous est distincte de celle des demandes administratives."
+    ],
+    "sources": [
+      "https://everywomanshealthcentre.ca/",
+      "https://everywomanshealthcentre.ca/contact/"
+    ],
+    "reviewed": "2026-09-10",
+    "confirmed": false,
+    "virtual": false
+  },
+  {
+    "id": "kelowna",
+    "name": "Kelowna General Hospital — Women’s Services Clinic",
+    "city": "Kelowna",
+    "province": "BC",
+    "phone": "250-980-1399",
+    "url": "https://www.interiorhealth.ca/locations/kelowna-general-hospital-gynecology-services-clinic",
+    "services": [
+      "procedural"
+    ],
+    "description": [
+      "Hospital-based procedural abortion services. HealthLink BC lists self-referral and provider referral; appointments are required.",
+      "Services hospitaliers d’avortement par intervention. HealthLink BC indique qu’on peut contacter la clinique directement ou être orienté par un professionnel; un rendez-vous est requis."
+    ],
+    "sources": [
+      "https://www.healthlinkbc.ca/find-care/find-health-services/program/womens-services-clinic"
+    ],
+    "reviewed": "2026-09-10",
+    "confirmed": false,
+    "virtual": false
+  },
+  {
+    "id": "kensington",
+    "name": "Kensington Clinic",
+    "city": "Calgary",
+    "province": "AB",
+    "phone": "403-283-9117",
+    "url": "https://kensingtonclinic.com/",
+    "services": [
+      "medication",
+      "procedural"
+    ],
+    "description": [
+      "Medication and aspiration abortion at 2431 5th Avenue NW. The clinic states that a doctor’s referral is not required.",
+      "Avortement par médicaments et par aspiration au 2431, 5e Avenue NO. La clinique indique qu’une recommandation médicale n’est pas nécessaire."
+    ],
+    "sources": [
+      "https://kensingtonclinic.com/"
+    ],
+    "reviewed": "2026-09-10",
+    "confirmed": false,
+    "virtual": false
+  },
+  {
+    "id": "womans-health-options",
+    "name": "Woman’s Health Options",
+    "city": "Edmonton",
+    "province": "AB",
+    "phone": "780-484-1124",
+    "url": "https://womanshealthoptions.com/",
+    "services": [
+      "medication",
+      "procedural"
+    ],
+    "description": [
+      "Alberta Health Services lists medication and procedural care, with appointments requested directly by phone or through the clinic.",
+      "Alberta Health Services indique des soins par médicaments et par intervention. Les rendez-vous se demandent directement par téléphone ou auprès de la clinique."
+    ],
+    "sources": [
+      "https://www.albertahealthservices.ca/findhealth/Service.aspx?serviceAtFacilityID=1013255"
+    ],
+    "reviewed": "2026-09-10",
+    "confirmed": false,
+    "virtual": false
+  },
+  {
+    "id": "womens-health-winnipeg",
+    "name": "Women’s Health Clinic",
+    "city": "Winnipeg",
+    "province": "MB",
+    "phone": "204-477-1887",
+    "url": "https://womenshealthclinic.org/services/abortion/book-appointment",
+    "services": [
+      "medication",
+      "procedural"
+    ],
+    "description": [
+      "Aspiration and medication abortion in Winnipeg. Use the dedicated abortion intake number to start the booking process.",
+      "Avortement par aspiration et par médicaments à Winnipeg. Utilisez le numéro dédié aux demandes d’avortement pour commencer la prise de rendez-vous."
+    ],
+    "sources": [
+      "https://womenshealthclinic.org/",
+      "https://womenshealthclinic.org/contact",
+      "https://womenshealthclinic.org/services/abortion/book-appointment"
+    ],
+    "reviewed": "2026-09-10",
+    "confirmed": false,
+    "virtual": false,
+    "phoneLabel": [
+      "Abortion intake in Winnipeg",
+      "Prise de rendez-vous à Winnipeg"
+    ],
+    "alternatePhone": {
+      "number": "1-866-947-1517",
+      "label": [
+        "From outside Winnipeg",
+        "De l’extérieur de Winnipeg"
+      ]
+    }
+  },
+  {
+    "id": "saskatoon",
+    "name": "Saskatoon Abortion Care Program",
+    "city": "Saskatoon",
+    "province": "SK",
+    "phone": "306-655-7637",
+    "url": "https://www.saskhealthauthority.ca/sites/default/files/2026-03/Saskatoon%20Abortion%20Services.pdf",
+    "services": [
+      "medication",
+      "procedural"
+    ],
+    "description": [
+      "The program at Saskatoon City Hospital accepts self-referrals for medication and procedural abortion. The linked service sheet lists its eligibility criteria.",
+      "Le programme de l’Hôpital municipal de Saskatoon accepte les demandes directes pour l’avortement par médicaments et par intervention. La fiche présente les critères d’admissibilité."
+    ],
+    "sources": [
+      "https://www.saskhealthauthority.ca/sites/default/files/2026-03/Saskatoon%20Abortion%20Services.pdf"
+    ],
+    "reviewed": "2026-09-10",
+    "confirmed": false,
+    "virtual": false,
+    "resourceLabel": [
+      "Program information (PDF)",
+      "Fiche du programme (PDF)"
+    ]
+  },
+  {
+    "id": "rose",
+    "name": "ROSE Clinic — Nova Scotia Health",
+    "city": "Halifax",
+    "province": "NS",
+    "phone": "1-833-352-0719",
+    "url": "https://www.nshealth.ca/clinics-programs-and-services/rose-clinic-reproductive-options-and-services",
+    "services": [
+      "medication",
+      "procedural"
+    ],
+    "description": [
+      "Based at the QEII Victoria General site. Its provincial self-referral line also helps people find other abortion providers in Nova Scotia.",
+      "Située au site Victoria General du QEII. Sa ligne provinciale de demandes directes aide aussi à trouver d’autres prestataires d’avortement en Nouvelle-Écosse."
+    ],
+    "sources": [
+      "https://www.nshealth.ca/clinics-programs-and-services/rose-clinic-reproductive-options-and-services"
+    ],
+    "reviewed": "2026-09-10",
+    "confirmed": false,
+    "virtual": false,
+    "phoneLabel": [
+      "Nova Scotia booking line",
+      "Ligne de rendez-vous de la Nouvelle-Écosse"
+    ]
+  },
+  {
+    "id": "moncton",
+    "name": "The Moncton Hospital — Family Planning Clinic",
+    "city": "Moncton",
+    "province": "NB",
+    "phone": "1-844-806-9205",
+    "url": "https://horizonnb.ca/services/clinics/family-planning-clinic-abortion-clinic/",
+    "services": [
+      "medication",
+      "procedural"
+    ],
+    "description": [
+      "The centralized intake line helps navigate medication and procedural abortion options. Patients can contact the service with or without a physician referral.",
+      "La ligne d’accueil centralisée aide à trouver des options d’avortement par médicaments et par intervention. Le service est accessible avec ou sans recommandation médicale."
+    ],
+    "sources": [
+      "https://horizonnb.ca/services/clinics/family-planning-clinic-abortion-clinic/"
+    ],
+    "reviewed": "2026-09-10",
+    "confirmed": false,
+    "virtual": false,
+    "phoneLabel": [
+      "Central intake line",
+      "Ligne d’accueil centralisée"
+    ]
+  },
+  {
+    "id": "shors-charlottetown",
+    "name": "SHORS — Health PEI",
+    "city": "Charlottetown",
+    "province": "PE",
+    "phone": "1-844-365-8258",
+    "url": "https://www.princeedwardisland.ca/en/information/health-pei/abortion-services?wbdisable=true",
+    "services": [
+      "medication"
+    ],
+    "description": [
+      "Health PEI lists medication abortion in Charlottetown. Procedural care is listed in Summerside. Call the shared SHORS line to confirm appointment location.",
+      "Santé Î.-P.-É. indique l’avortement par médicaments à Charlottetown. Les soins par intervention sont offerts à Summerside. Appelez la ligne commune SHORS pour confirmer le lieu du rendez-vous."
+    ],
+    "sources": [
+      "https://www.princeedwardisland.ca/en/information/health-pei/abortion-services?wbdisable=true"
+    ],
+    "reviewed": "2026-09-10",
+    "confirmed": false,
+    "virtual": false,
+    "phoneLabel": [
+      "Shared SHORS booking line",
+      "Ligne de rendez-vous commune de SHORS"
+    ]
+  },
+  {
+    "id": "shors-summerside",
+    "name": "SHORS — Health PEI",
+    "city": "Summerside",
+    "province": "PE",
+    "phone": "1-844-365-8258",
+    "url": "https://www.princeedwardisland.ca/en/information/health-pei/abortion-services?wbdisable=true",
+    "services": [
+      "medication",
+      "procedural"
+    ],
+    "description": [
+      "Health PEI lists medication and procedural abortion in Summerside. Call the shared SHORS line to confirm appointment location.",
+      "Santé Î.-P.-É. indique l’avortement par médicaments et par intervention à Summerside. Appelez la ligne commune SHORS pour confirmer le lieu du rendez-vous."
+    ],
+    "sources": [
+      "https://www.princeedwardisland.ca/en/information/health-pei/abortion-services?wbdisable=true"
+    ],
+    "reviewed": "2026-09-10",
+    "confirmed": false,
+    "virtual": false,
+    "phoneLabel": [
+      "Shared SHORS booking line",
+      "Ligne de rendez-vous commune de SHORS"
+    ]
+  },
+  {
+    "id": "now",
+    "name": "Northern Options for Women (NOW)",
+    "city": "Yellowknife",
+    "province": "NT",
+    "phone": "1-888-873-5710",
+    "url": "https://www.nthssa.ca/en/services/now/making-appointment",
+    "services": [
+      "medication",
+      "procedural"
+    ],
+    "description": [
+      "The NOW program serves the Northwest Territories and the Kitikmeot region of Nunavut. Contact the team about care arrangements from your community.",
+      "Le programme NOW dessert les Territoires du Nord-Ouest et la région de Kitikmeot au Nunavut. Communiquez avec l’équipe pour organiser les soins à partir de votre communauté."
+    ],
+    "sources": [
+      "https://www.nthssa.ca/en/services/now",
+      "https://www.nthssa.ca/fr/contact-information/options-nordiques-pour-les-femmes-now",
+      "https://www.nthssa.ca/en/services/now/making-appointment"
+    ],
+    "reviewed": "2026-09-10",
+    "confirmed": false,
+    "virtual": false,
+    "phoneLabel": [
+      "From outside Yellowknife",
+      "De l’extérieur de Yellowknife"
+    ],
+    "alternatePhone": {
+      "number": "867-765-4018",
+      "label": [
+        "From Yellowknife",
+        "De Yellowknife"
+      ]
+    }
+  },
+  {
+    "id": "opal",
+    "name": "Opal",
+    "city": "Whitehorse",
+    "province": "YT",
+    "phone": "867-393-6635",
+    "url": "https://opalyukon.ca/",
+    "services": [],
+    "description": [
+      "Yukon’s Better to Know resource directs people to Opal for abortion care. People outside Whitehorse can discuss travel arrangements with Opal or their health centre.",
+      "La ressource yukonnaise Better to Know oriente les personnes vers Opal pour les soins d’avortement. À l’extérieur de Whitehorse, discutez du déplacement avec Opal ou votre centre de santé."
+    ],
+    "sources": [
+      "https://bettertoknow-yukon.ca/pregnancy/pregnancy-options/abortion-resources"
+    ],
+    "reviewed": "2026-09-10",
+    "confirmed": false,
+    "virtual": false
+  },
+  {
+    "id": "choice-in-health",
+    "name": "Choice in Health Clinic",
+    "city": "Toronto",
+    "province": "ON",
+    "phone": "416-975-9300",
+    "url": "https://choiceinhealth.ca/",
+    "services": [
+      "medication",
+      "procedural"
+    ],
+    "description": [
+      "A clinic at 1678 Bloor Street West offering medication and procedural abortion. Contact the clinical team for current appointment information.",
+      "Une clinique du 1678, rue Bloor Ouest, offrant l’avortement par médicaments et par intervention. Contactez l’équipe pour les renseignements actuels sur les rendez-vous."
+    ],
+    "sources": [
+      "https://choiceinhealth.ca/",
+      "https://choiceinhealth.ca/contact",
+      "https://choiceinhealth.ca/bookonline",
+      "https://choiceinhealth.ca/faq",
+      "https://choiceinhealth.ca/accessibility"
+    ],
+    "reviewed": "2026-11-03",
+    "confirmed": false
+  },
+  {
+    "id": "outaouais",
+    "name": "Clinique des femmes de l’Outaouais",
+    "city": "Gatineau",
+    "province": "QC",
+    "phone": "819-778-2055",
+    "url": "https://www.cliniquedesfemmes.com/",
+    "services": [],
+    "description": [
+      "Abortion and contraception services in Gatineau. The current website lists 920 boulevard Saint-Joseph, suite 105B; confirm the location when booking.",
+      "Services d’avortement et de contraception à Gatineau. Le site actuel indique le 920, boulevard Saint-Joseph, bureau 105B; confirmez le lieu lors de la prise de rendez-vous."
+    ],
+    "sources": [
+      "https://www.cliniquedesfemmes.com/"
+    ],
+    "reviewed": "2026-09-10",
+    "confirmed": false
+  },
+  {
+    "id": "chu-quebec",
+    "name": "CHU de Québec — Planification des naissances",
+    "city": "Québec",
+    "province": "QC",
+    "phone": "418-525-4397",
+    "url": "https://www.chudequebec.ca/patient/maladies-soins-et-services/m-informer-sur-les-soins-et-services/planification-des-naissances.aspx",
+    "services": [
+      "medication",
+      "procedural"
+    ],
+    "description": [
+      "The clinic at Hôpital Saint-François d’Assise offers medication and procedural abortion. Its website states that access is possible with or without a doctor’s referral.",
+      "La clinique de l’Hôpital Saint-François d’Assise offre l’avortement par médicaments et par intervention. Son site indique qu’on peut y accéder avec ou sans référence médicale."
+    ],
+    "sources": [
+      "https://www.chudequebec.ca/patient/maladies-soins-et-services/m-informer-sur-les-soins-et-services/planification-des-naissances.aspx"
+    ],
+    "reviewed": "2026-09-10",
+    "confirmed": false
+  },
+  {
+    "id": "vi-choice",
+    "name": "Vancouver Island Choice Clinic",
+    "city": "Victoria",
+    "province": "BC",
+    "phone": "250-480-7338",
+    "url": "https://www.vichoice.ca/",
+    "services": [],
+    "description": [
+      "Pregnancy termination services at 104–284 Helmcken Road. Contact the clinic to confirm the methods offered and appointment requirements.",
+      "Services d’interruption de grossesse au 104–284, chemin Helmcken. Contactez la clinique pour confirmer les méthodes offertes et les modalités de rendez-vous."
+    ],
+    "sources": [
+      "https://www.vichoice.ca/",
+      "https://www.vichoice.ca/contact-us"
+    ],
+    "reviewed": "2026-09-10",
+    "confirmed": false
+  },
+  {
+    "id": "regina",
+    "name": "Regina Women’s Health Centre",
+    "city": "Regina",
+    "province": "SK",
+    "phone": "306-766-0586",
+    "url": "https://www.saskhealthauthority.ca/facilities-locations/regina-general-hospital",
+    "services": [],
+    "description": [
+      "To ask about abortion care at Regina General Hospital, call the Women’s Health Centre directly. The hospital website lists the facility’s location.",
+      "Pour vous renseigner sur les services d’avortement à l’Hôpital général de Regina, appelez directement le Women’s Health Centre. Le site de l’hôpital indique où se trouve l’établissement."
+    ],
+    "sources": [
+      "https://www.plannedparenthoodregina.com/clinical-services",
+      "https://sk.211.ca/services/93592836/",
+      "https://www.saskhealthauthority.ca/facilities-locations/regina-general-hospital"
+    ],
+    "reviewed": "2026-11-03",
+    "confirmed": false,
+    "resourceLabel": [
+      "Hospital website",
+      "Site de l’hôpital"
+    ]
+  },
+  {
+    "id": "athena-health-centre",
+    "name": "Athena Health Centre",
+    "city": "St. John's",
+    "province": "NL",
+    "phone": "709-754-3572",
+    "url": "https://hi.easternhealth.ca/life-stages/pregnancy/unplanned-pregnancy/abortion/",
+    "services": [
+      "medication",
+      "procedural"
+    ],
+    "description": [
+      "Athena Health Centre offers medication and procedural abortion in St. John’s. You can call the clinic to make an appointment.",
+      "Le centre de santé Athena offre l’avortement par médicaments et par intervention à St. John’s. Vous pouvez téléphoner directement à la clinique pour prendre rendez-vous."
+    ],
+    "sources": [
+      "https://hi.easternhealth.ca/life-stages/pregnancy/unplanned-pregnancy/abortion/",
+      "https://www.thrivecyn.ca/directory-of-services/athena-health-centre/"
+    ],
+    "reviewed": "2026-11-03",
+    "confirmed": false,
+    "resourceLabel": [
+      "Health authority information",
+      "Information de l’autorité de santé"
+    ]
+  }
+]
