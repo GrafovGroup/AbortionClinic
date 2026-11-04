@@ -5,6 +5,7 @@ import {providerName,localizedResource} from './localization';
 import {provinces,pathFor, type Article} from './content';
 import {cityGuides,cityGuidePath} from './city-guides';
 import {localProviders,provincePath} from './locations';
+import {articleDescriptions} from './article-descriptions';
 
 export const SITE_ORIGIN='https://abortionclinic.ca';
 export const absolutePath=(route:string)=>SITE_ORIGIN+'/'+route.replace(/^\/|\/$/g,'')+(route.replace(/^\/|\/$/g,'')?'/':'');
@@ -35,7 +36,7 @@ export function pageDescription(route:string){
   if(location){const count=localProviders(location).length;return fr?`Avortement à ${location.name} (${location.province}) : ${count?'coordonnées de prestataires locaux et sources':'orientation régionale et soutien pour trouver des soins'}. Information indépendante.`:`Abortion care in ${location.name}, ${location.province}: ${count?'local provider contacts and sources':'regional referrals and help finding care'}. Free, independent information.`;}
   if(r.isLocationDirectory)return fr?'Parcourez les guides des grandes villes canadiennes et de leurs environs. Consultez les coordonnées des cliniques, les modalités de rendez-vous et les ressources régionales.':'Browse guides to major Canadian cities and surrounding communities, with clinic contacts, booking instructions and regional access resources.';
   if(province)return fr?`Soins d’avortement — ${province[4]} : coordonnées publiques, services documentés et orientation régionale. Répertoire indépendant et gratuit.`:`Abortion care in ${province[3]}: public provider contacts, documented services and regional referrals. Free, independent directory.`;
-  if(article)return article.intro[fr?1:0];
+  if(article)return articleDescriptions[article.slug]?.[fr?1:0]||article.intro[fr?1:0];
   const descriptions:Record<string,[string,string]>={
     '':['Find abortion clinics in Canada, read about care options and get phone numbers and official websites to contact a clinic directly.','Trouvez une clinique d’avortement au Canada, renseignez-vous sur les options de soins et consultez les coordonnées pour joindre une clinique directement.'],
     'find-care':['Search abortion clinic listings by city, province or territory. Filter by documented service, then call a clinic or visit its official website.','Cherchez une clinique d’avortement par ville, province ou territoire. Filtrez les services, puis appelez la clinique ou consultez son site officiel.'],
@@ -48,7 +49,8 @@ export function metadataForRoute(route:string):Metadata{
   const consolidated=resolveRoute(route).redirectTo;
   if(consolidated)return {robots:{index:false,follow:true},alternates:{canonical:SITE_ORIGIN+consolidated}};
   const r=resolveRoute(route);const self=absolutePath(route);const en=r.fr?SITE_ORIGIN+r.equivalent:self;const french=r.fr?self:SITE_ORIGIN+r.equivalent;
-  return {title:(r.title||(r.fr?'Page introuvable':'Page not found'))+' | AbortionClinic.ca',description:pageDescription(route),alternates:{canonical:self,languages:{'en-CA':en,'fr-CA':french,'x-default':en}},robots:{index:r.indexable,follow:true},openGraph:{type:'website',siteName:'AbortionClinic.ca',title:r.title,description:pageDescription(route),url:self,locale:r.fr?'fr_CA':'en_CA',alternateLocale:r.fr?'en_CA':'fr_CA'}};
+  const shareImage={url:SITE_ORIGIN+'/social/abortionclinic-'+(r.fr?'fr':'en')+'.jpg',width:1200,height:630,type:'image/jpeg',alt:r.fr?'AbortionClinic.ca — Répertoire canadien indépendant. Coordonnées des cliniques et information sur les soins.':'AbortionClinic.ca — Independent Canadian directory. Clinic contacts and information about care.'};
+  return {title:(r.title||(r.fr?'Page introuvable':'Page not found'))+' | AbortionClinic.ca',description:pageDescription(route),alternates:{canonical:self,languages:{'en-CA':en,'fr-CA':french,'x-default':en}},robots:{index:r.indexable,follow:true},openGraph:{type:'website',siteName:'AbortionClinic.ca',title:r.title,description:pageDescription(route),url:self,locale:r.fr?'fr_CA':'en_CA',alternateLocale:r.fr?'en_CA':'fr_CA',images:[shareImage]},twitter:{card:'summary_large_image',title:r.title,description:pageDescription(route),images:[{url:shareImage.url,alt:shareImage.alt}]}};
 }
 export function breadcrumbsForRoute(route:string){
   const r=resolveRoute(route);const home={name:'Canada',path:pathFor('',r.fr)};
@@ -74,7 +76,7 @@ export function structuredDataForRoute(route:string){
   if(r.isLocationDirectory&&!r.province)page.mainEntity={'@type':'ItemList',numberOfItems:cityGuides.length,itemListElement:[...cityGuides].sort((a,b)=>a.province.localeCompare(b.province)||a.slug.localeCompare(b.slug)).map((guide,i)=>({'@type':'ListItem',position:i+1,name:guide.title[r.fr?1:0],url:SITE_ORIGIN+cityGuidePath(guide.slug,r.fr)}))};
   if(r.provider)page.about={'@type':'Organization',name:providerName(r.provider,r.fr),url:localizedResource(r.provider.url,r.fr)};
   const article=isEducationalArticle(r.article)&&r.article?{
-    '@type':'Article','@id':url+'#article',headline:r.article.title[r.fr?1:0],description:r.article.intro[r.fr?1:0],
+    '@type':'Article','@id':url+'#article',headline:r.article.title[r.fr?1:0],description:pageDescription(route),
     inLanguage:language,mainEntityOfPage:{'@id':url+'#webpage'},publisher:{'@id':publisher['@id']},
     ...(modified?{dateModified:modified}:{}),
     ...(r.article.sources?.length?{citation:[...new Set(r.article.sources.map(source=>localizedResource(source,r.fr)))]}:{}),
