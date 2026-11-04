@@ -1,4 +1,4 @@
-/* A quieter public directory: real place photography and a readable text index. */
+/* Restrained public styling with natural care imagery and readable guides. */
 body:has(.directory-header) {
   --background: #fbfaf7;
   --border: #d8ddde;
@@ -171,4 +171,43 @@ body:has(.directory-header) {
   #main .home-hero { padding-block: 30px; }
   #main .home-hero h1 { font-size: clamp(39px, 10.4vw, 48px); }
   #main .editorial-image figcaption { font-size: 11px; }
+}
+
+/* Keep complete care scenes visible; do not crop faces on narrow screens. */
+#main .article-page .editorial-heading:has(.editorial-image) {
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: clamp(28px, 4vw, 56px);
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--border);
+}
+#main .article-page .editorial-heading .editorial-image {
+  width: 100%;
+  height: auto;
+  background: transparent;
+  border-radius: 4px;
+}
+#main .article-page .editorial-heading .editorial-image img {
+  width: 100%;
+  height: auto;
+}
+#main .pathways--care > a {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 20px;
+  gap: 0 12px;
+  padding: 0 0 22px;
+  border-top: 0;
+  border-bottom: 1px solid var(--border);
+}
+#main .pathways--care .pathway-art {
+  grid-column: 1 / -1;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  margin: 0 0 18px;
+  border-radius: 4px;
+}
+#main .pathways--care .pathway-art img { width: 100%; height: auto; }
+@media (max-width: 700px) {
+  #main .pathways--care { gap: 28px; }
+  #main .pathways--care > a { padding-top: 0; }
 }

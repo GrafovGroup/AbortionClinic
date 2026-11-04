@@ -1,6 +1,19 @@
 # Image credits
 
-## Homepage photograph
+## Current care imagery
+
+Four original images were created using built-in image generation for this site. They depict fictional care settings and people, not actual patients, listed clinics, staff, endorsements or editorial reviewers. English and French versions share the scenes with localized illustrative alt descriptions.
+
+| Asset prefix | Scene and use |
+| --- | --- |
+| `care-consultation-v2` | Candid private consultation between an adult woman and nurse; homepage hero. |
+| `care-medication-v2` | Adult woman receiving medication counselling at a clinic counter; medication guide and matching homepage link. |
+| `care-in-clinic-v2` | Nurse preparing an outpatient examination couch; procedural guide and matching homepage link. |
+| `care-preparation-v2` | Adult woman taking a phone call with a notebook of appointment questions; preparation guide and matching homepage link. |
+
+Each asset has 640px and 1280px WebP variants under `public/images/`, resized from a 1536×1024 generated original. No real clinic branding, patient records, drug names or dosing instructions are shown. Direction: ordinary care environments, candid neutral expressions, natural lighting, realistic skin and fabric texture, no staged lounge decor or nature/city scenes. These images are illustrative and do not document a medical procedure.
+
+## Previous homepage photograph (inactive)
 
 **Bike path @ Parc de la Merci @ Montréal**, photographed October 17, 2016 by **Guilhem Vellut**.
 
@@ -12,6 +25,6 @@
 - Changes: resized and converted to WebP; no compositing, generative editing or subject changes. Original framing is retained.
 - Used as Canadian place photography, not as a photograph of a listed clinic. No affiliation with or endorsement by the photographer is implied.
 
-Both homepage language versions display the place, photographer, source link and licence link below the image. Preserve attribution when reusing the asset. The original source is also linked from the deployed image caption.
+This photograph is no longer displayed on the public site. The files and attribution are retained for compatibility with the earlier release. Preserve attribution when reusing the asset.
 
-Older generated illustration assets remain in `public/images/` for compatibility with earlier releases. Current public page templates no longer display them; `lib/imagery.ts` declares the active image. Do not describe those historical generated scenes as actual patients, staff or facilities.
+Older illustration assets remain in `public/images/` for compatibility with earlier releases. `lib/imagery.ts` declares the active images.

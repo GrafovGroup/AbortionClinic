@@ -5,29 +5,37 @@ export type Artwork = {
   alt:[string,string];
   width:number;
   height:number;
-  credit?:{place:[string,string];author:string;source:string;license:string;licenseUrl:string};
 };
 
 export const artwork:Record<string,Artwork> = {
   welcome: {
-    file: 'montreal-parc-de-la-merci',
-    width: 1280,
-    height: 853,
-    alt: ['A cycling path curves through autumn trees in Parc de la Merci, Montréal.', 'Une piste cyclable serpente entre les arbres d’automne du parc de la Merci, à Montréal.'],
-    credit: {
-      place: ['Parc de la Merci, Montréal', 'Parc de la Merci, Montréal'],
-      author: 'Guilhem Vellut',
-      source: 'https://commons.wikimedia.org/wiki/File:Bike_path_@_Parc_de_la_Merci_@_Montr%C3%A9al_(30518910046).jpg',
-      license: 'CC BY 2.0',
-      licenseUrl: 'https://creativecommons.org/licenses/by/2.0/',
-    },
+    file: 'care-consultation-v2', width: 1280, height: 853,
+    alt: ['Illustrative care scene: a woman talks with a nurse in a private consultation room.', 'Scène de soins illustrative : une femme discute avec une infirmière dans une salle de consultation privée.'],
+  },
+  medication: {
+    file: 'care-medication-v2', width: 1280, height: 853,
+    alt: ['Illustrative care scene: a woman discusses medication with a pharmacist.', 'Scène de soins illustrative : une femme discute de médicaments avec une pharmacienne.'],
+  },
+  procedural: {
+    file: 'care-in-clinic-v2', width: 1280, height: 853,
+    alt: ['Illustrative care scene: a nurse prepares an examination room.', 'Scène de soins illustrative : une infirmière prépare une salle d’examen.'],
+  },
+  preparation: {
+    file: 'care-preparation-v2', width: 1280, height: 853,
+    alt: ['Illustrative scene: a woman makes a phone call with her appointment questions in a notebook.', 'Scène illustrative : une femme téléphone avec ses questions pour un rendez-vous notées dans un carnet.'],
   },
 };
 
-// Imagery introduces the homepage only. Articles use text-led headings;
-// directory and provider pages show factual panels rather than staged staff.
+const topicArt:Record<string,string> = {
+  'medication-abortion': 'medication',
+  'procedural-abortion': 'procedural',
+  'what-to-expect': 'preparation',
+};
+
+// Care imagery supports the homepage and the matching educational guides.
+// Provider records and editorial policies do not imply photographed staff or facilities.
 export function artworkForRoute(route:string):Artwork|undefined {
   const r=resolveRoute(route);
-  if(!r.valid||r.key||r.provider||r.province||r.isLocationDirectory)return undefined;
-  return artwork.welcome;
+  if(!r.valid||r.provider||r.province||r.isLocationDirectory)return undefined;
+  return !r.key ? artwork.welcome : artwork[topicArt[r.key]];
 }

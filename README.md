@@ -4,7 +4,7 @@ Independent Canadian information directory in English and French. Visitors use p
 
 ## Current release and hosting
 
-The public site is **https://abortionclinic.ca/**. The directory and maintenance features were released in Sites version **12**, published November 3, 2026 (Toronto time), from source commit `028f8419b6b03a1ef2d62f7487cdf798bf7bd252`. This source also includes the subsequent editorial visual refresh: real Canadian place photography on the homepage, text-led guides and policy pages, simpler borders and factual directory panels. Sites version history records the current deployment and its exact source commit.
+The public site is **https://abortionclinic.ca/**. The directory and maintenance features were released in Sites version **12**, published November 3, 2026 (Toronto time), from source commit `028f8419b6b03a1ef2d62f7487cdf798bf7bd252`. This source also includes the subsequent editorial visual refresh: realistic care imagery on the homepage and three matching educational guides, text-led policy pages, simpler borders and factual directory panels. Sites version history records the current deployment and its exact source commit.
 
 - 73 provider-location records, shared across both languages.
 - 97 city guides (194 bilingual guide pages), covering 454 distinct core and surrounding communities.
