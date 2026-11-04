@@ -1,6 +1,7 @@
 import type {Metadata} from 'next';
 import {headers} from 'next/headers';
 import './globals.css';
+import './editorial-refresh.css';
 export const metadata:Metadata={title:'Abortion in Canada – Clinics and information | AbortionClinic.ca',description:'Independent Canadian abortion information, clinic phone numbers and official websites in English and French.',referrer:'no-referrer',verification:{google:'3Xvvi6TRF95i5XunAf38kAXH1OrO_3q26FKiWRJWuCw',other:{'msvalidate.01':'8540AF3FE8C8197267E84BBE602115F7'}},alternates:{canonical:'https://abortionclinic.ca/',languages:{'en-CA':'https://abortionclinic.ca/','fr-CA':'https://abortionclinic.ca/fr/'}}};
 export default async function RootLayout({children}:{children:React.ReactNode}){
   const h=await headers();

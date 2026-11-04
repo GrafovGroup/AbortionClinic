@@ -4,7 +4,7 @@ Independent Canadian information directory in English and French. Visitors use p
 
 ## Current release and hosting
 
-The public site is **https://abortionclinic.ca/**. Sites version **12**, published November 3, 2026 (Toronto time), contains the current application. Its published source commit is `028f8419b6b03a1ef2d62f7487cdf798bf7bd252`; later documentation-only backup commits do not change that deployed application.
+The public site is **https://abortionclinic.ca/**. The directory and maintenance features were released in Sites version **12**, published November 3, 2026 (Toronto time), from source commit `028f8419b6b03a1ef2d62f7487cdf798bf7bd252`. This source also includes the subsequent editorial visual refresh: real Canadian place photography on the homepage, text-led guides and policy pages, simpler borders and factual directory panels. Sites version history records the current deployment and its exact source commit.
 
 - 73 provider-location records, shared across both languages.
 - 97 city guides (194 bilingual guide pages), covering 454 distinct core and surrounding communities.
@@ -48,7 +48,7 @@ Do not use the legacy npm-specific `scripts/install-ci.sh` directly: the project
 | Bilingual articles and public policies | `lib/content.ts`, `lib/access-articles.ts`, `lib/resource-articles.ts` |
 | Routes, indexing and structured data | `lib/routes.ts`, `lib/seo.ts`, `app/robots.txt/route.ts`, `app/sitemap.xml/route.ts`, `DISCOVERABILITY.md` |
 | Geographic data and attribution | `lib/data/canada-locations.json`, `lib/data/location-source.json` |
-| Locally hosted branding and images | `public/brand/`, `public/images/`, favicon files in `public/` |
+| Locally hosted branding and images | `public/brand/`, `public/images/`, `IMAGE-CREDITS.md`, favicon files in `public/` |
 | Database schema and migrations | `db/`, `drizzle/`; self-initializing report tables also described below |
 | Regression checks | `scripts/check-*.mjs` |
 | Site identity and package configuration | `.openai/hosting.json`, `package.json`, `pnpm-lock.yaml`, `vite.config.ts` |
@@ -153,6 +153,6 @@ pnpm build
 
 Database checks use Node's built-in `node:sqlite`; use a supported Node release with that module available. Historical referral checks remain in `scripts/` for maintenance of retained private records; do not re-enable the retired public intake flow.
 
-The current release passed TypeScript, route/metadata/sitemap checks, national coverage, regional and bilingual search checks, editorial-queue checks, visitor-report validation/security/storage checks and a production build. Live checks verified the source details, report prefill, English/French switching, missing-field validation, sharing-copy action, sitemap access and anonymous admin denial. Narrow-screen page checks included the new report, guide, profile and sharing templates. Avoid production test submissions when verifying forms.
+The functional release passed TypeScript, route/metadata/sitemap checks, national coverage, regional and bilingual search checks, editorial-queue checks, visitor-report validation/security/storage checks and a production build. Live checks verified the source details, report prefill, English/French switching, missing-field validation, sharing-copy action, sitemap access and anonymous admin denial. Narrow-screen page checks included the new report, guide, profile and sharing templates. Avoid production test submissions when verifying forms.
 
 Before publishing later changes, review both languages, check relevant desktop/mobile templates and source links, and preserve the information-only scope. Publish through Sites using the existing project and retain the resulting source commit and saved version. A source-only GitHub backup does not require a new live deployment.

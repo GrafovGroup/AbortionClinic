@@ -1,0 +1,174 @@
+/* A quieter public directory: real place photography and a readable text index. */
+body:has(.directory-header) {
+  --background: #fbfaf7;
+  --border: #d8ddde;
+  --secondary: #f0f3f4;
+  --muted: #f0f3f4;
+  background: var(--background);
+}
+
+#main h1 em {
+  color: inherit;
+  font-style: normal;
+}
+
+#main .home-hero {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.02fr);
+  gap: clamp(32px, 5vw, 72px);
+  padding-block: clamp(36px, 4.6vw, 68px);
+  border-bottom: 1px solid var(--border);
+}
+
+#main .home-hero::before { content: none; }
+
+#main .home-hero h1 {
+  font-size: clamp(44px, 4.7vw, 68px);
+  line-height: 1.08;
+  letter-spacing: -.035em;
+  margin-bottom: 22px;
+}
+
+#main .hero-kicker { letter-spacing: .11em; }
+#main .hero-kicker > span { display: none; }
+#main .hero-copy > p:not(.eyebrow) { line-height: 1.65; }
+#main .hero .searchbar { border-radius: 4px; }
+#main .hero .searchbar button { border-radius: 2px; }
+
+#main .home-hero figure.editorial-image {
+  display: block;
+  width: 100%;
+  max-width: none;
+  height: auto;
+  aspect-ratio: auto;
+  margin: 0;
+  overflow: visible;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+#main .home-hero .editorial-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border-radius: 2px;
+}
+
+#main .editorial-image figcaption {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  padding-top: 12px;
+  color: #536174;
+  font-size: 12px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+#main .editorial-image figcaption a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+#main .guide-heading { padding: 42px 0 24px; }
+#main .guide-heading h2 { font-size: clamp(30px, 2.8vw, 39px); }
+
+#main .pathways--editorial {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(20px, 3vw, 40px);
+  margin: 0 0 50px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+#main .pathways--editorial > a {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 22px 0;
+  border: 0;
+  border-top: 1px solid #aebbc7;
+  text-decoration: none;
+}
+
+#main .pathways--editorial h3 {
+  margin: 0 0 7px;
+  font: 600 19px / 1.4 Arial, Helvetica, sans-serif;
+  letter-spacing: -.015em;
+}
+
+#main .pathways--editorial p { font-size: 14px; line-height: 1.65; }
+#main .pathways--editorial > a > svg { margin-top: 3px; color: #476584; }
+#main .pathways--editorial > a:hover h3 { text-decoration: underline; text-underline-offset: 4px; }
+
+/* Image-free article headers use the full available width. Factual sidebars keep their columns. */
+#main .article-page > .editorial-heading:not(:has(.editorial-image, .context-panel)) {
+  display: block;
+  padding-bottom: 32px;
+  margin-bottom: 34px;
+  border-bottom: 1px solid var(--border);
+}
+
+#main .article-page > .editorial-heading h1 {
+  max-width: 1000px;
+  font-size: clamp(38px, 4.3vw, 60px);
+  line-height: 1.12;
+  letter-spacing: -.03em;
+}
+
+#main .article-page > .editorial-heading .intro {
+  max-width: 78ch;
+  font-size: 19px;
+  line-height: 1.75;
+}
+
+#main .context-panel {
+  border-radius: 4px;
+  background: #f0f3f4;
+  border-color: #d4dde2;
+}
+
+#main .note-box,
+#main .privacy-reassurance,
+#main .comparison,
+#main .support { border-radius: 4px; }
+
+#main .note-box,
+#main .privacy-reassurance { background: #f0f3f4; }
+
+#main .national-city-guides .city-guide-regions { gap: 0 40px; }
+#main .national-city-guides .city-guide-regions details {
+  border: 0;
+  border-top: 1px solid var(--border);
+  border-radius: 0;
+  background: transparent;
+}
+
+#main .national-city-guides .city-guide-regions summary { padding: 20px 0; }
+#main .national-city-guides .city-guide-regions ul { padding-inline: 0; }
+#main + footer { background: #f0f2f2; }
+
+@media (max-width: 780px) {
+  #main .home-hero { gap: 28px; }
+  #main .home-hero h1 { font-size: clamp(42px, 7.5vw, 58px); }
+  #main .home-hero .editorial-image img { max-height: none; }
+}
+
+@media (max-width: 700px) {
+  #main .pathways--editorial { grid-template-columns: 1fr; gap: 0; margin-bottom: 34px; }
+  #main .pathways--editorial > a { padding-block: 20px; }
+  #main .guide-heading { padding-top: 34px; }
+  #main .article-page > .editorial-heading .intro { font-size: 18px; }
+  #main .national-city-guides .city-guide-regions { gap: 0; }
+}
+
+@media (max-width: 480px) {
+  #main .home-hero { padding-block: 30px; }
+  #main .home-hero h1 { font-size: clamp(39px, 10.4vw, 48px); }
+  #main .editorial-image figcaption { font-size: 11px; }
+}
