@@ -57,10 +57,11 @@ footer .brand-logo{width:290px}
 
 /* Public navigation and directory */
 :root {
-  --site-width: 1440px;
+  --site-width: 100%;
   --site-gutter: clamp(20px, 4.5vw, 78px);
 }
 main { max-width: var(--site-width); padding-inline: var(--site-gutter); }
+footer { padding-inline: var(--site-gutter); }
 .site-utility { position: sticky; top: 0; z-index: 40; background: #273c59; color: white; }
 .utility-inner, .directory-header-inner {
   max-width: var(--site-width); padding-inline: var(--site-gutter); margin-inline: auto;
