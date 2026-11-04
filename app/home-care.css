@@ -1,7 +1,7 @@
 /* The selected Care focused homepage; directory and article layouts are separate. */
 #main .home-care-feature {
   display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1.35fr);
-  min-height:clamp(320px,42svh,420px);
+  min-height:clamp(384px,50.4svh,504px);
   margin-inline:calc(-1 * var(--site-gutter));background:#293f5c;color:#fff;
 }
 #main .home-care-copy {display:flex;flex-direction:column;justify-content:center;padding:clamp(26px,3vw,44px) clamp(28px,3vw,48px) clamp(26px,3vw,44px) var(--site-gutter);min-width:0}
@@ -50,7 +50,7 @@
   #main .home-care-copy h1 {font-size:clamp(38px,8.5vw,48px);max-width:14ch;margin-bottom:18px}
   #main .home-care-copy .eyebrow {margin-bottom:12px}
   #main .home-care-copy>p:last-child {font-size:16px}
-  #main .home-care-photo {height:clamp(160px,48vw,220px)}
+  #main .home-care-photo {height:clamp(192px,57.6vw,264px)}
   #main .home-care-search {grid-template-columns:1fr;gap:20px;padding-block:25px}
   #main .home-care-search .searchbar {gap:6px}
   #main .home-care-search .searchbar>svg {margin-left:6px;width:17px}
